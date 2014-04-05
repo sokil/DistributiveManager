@@ -1,0 +1,5 @@
+*.pyc
+.project
+public/dist/*
+.idea
+configs/nginx/production.conf
