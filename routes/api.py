@@ -1,10 +1,11 @@
 from flask import Blueprint, jsonify
+from flask import current_app
 
 api = Blueprint('api', __name__)
 
 
 @api.route("/api/latest")
-def index():
+def latest():
     return jsonify({
         "windows": {
             "version": "1.0.6.25",
