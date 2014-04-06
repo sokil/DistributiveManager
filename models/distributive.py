@@ -1,4 +1,5 @@
 from mongokit import Document
+from bson.objectid import ObjectId
 import re
 
 def version_validator(version):
@@ -12,7 +13,7 @@ class Distributive(Document):
 
     structure = {
         'version': str,
-        'environment': str,
+        'environment': ObjectId,
         'url': str
     }
 
