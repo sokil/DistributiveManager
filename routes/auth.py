@@ -1,5 +1,6 @@
-from flask import Blueprint, jsonify, render_template, current_app, redirect, request, url_for, flash
+from flask import Blueprint, jsonify, render_template, current_app, redirect, url_for, flash, request
 from flask_login import login_required, login_user, logout_user
+from models.user import User
 
 auth = Blueprint('auth', __name__)
 
@@ -27,3 +28,16 @@ def login():
 def logout():
     logout_user()
     return redirect('/')
+
+
+@auth.route("/hash")
+@login_required
+def password_hash():
+    password = request.args.get('p', '')
+    salt = request.args.get('s', '')
+
+    return jsonify({
+        'password': password,
+        'hash': User.get_password_hash(password, salt),
+        'salt' : salt
+    })
