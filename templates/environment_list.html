@@ -1,0 +1,14 @@
+{% extends "menu_layout.html" %}
+{% block body %}
+    <h1>Environment</h1>
+    <table class="table table-striped table-hover">
+    <tr>
+        <th>Name</th>
+    </tr>
+    {% for environment in list %}
+    <tr>
+        <td><a href="/distributive/list/{{ environment.name }}">{{ environment.name }}</a></td>
+    </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

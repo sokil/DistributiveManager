@@ -1,5 +1,19 @@
-<ul class="nav nav-tabs">
-  <li class="active"><a href="#">Home</a></li>
-  <li><a href="#">Profile</a></li>
-  <li><a href="#">Messages</a></li>
-</ul>
+<!doctype html>
+<html>
+    <head>
+        <title>Distributive manager</title>
+        <script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/css/bootstrap.custom.css" />
+    </head>
+    <body>
+        <div class="container">
+            <ul class="nav nav-tabs top-space bottom-space" id="tabPages">
+                <li class="active"><a href="/environment">Environment</a></li>
+                <li><a href="/distributives">Distributives</a></li>
+            </ul>
+            {% block body %}{% endblock %}
+        </div>
+    </body>
+</html>

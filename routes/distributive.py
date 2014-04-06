@@ -1,14 +1,31 @@
-from flask import Blueprint, jsonify
-from flask import current_app
+from flask import Blueprint, jsonify, render_template, request, current_app
+from flask_login import login_required
 
-api = Blueprint('distributive', __name__)
+distributive = Blueprint('distributive', __name__)
 
 
-@api.route("/distributive/save")
+@distributive.route('/distributive/list/<environment_name>')
+@login_required
+def distributive_list(environment_name):
+
+    # environment
+    environment=current_app.connection.Environment.find_one({'name': environment_name})
+    if environment is None:
+        raise Exception('Environment not found')
+
+    # distributive list
+    distributives = current_app.connection.Distributive.find({'environment': environment_name})
+    print {'environment': environment_name}
+    if distributives is None:
+        distributives = []
+
+    # render
+    return render_template("distributive_list.html",
+        environment=environment,
+        distributives=distributives
+    )
+
+
+@distributive.route("/distributive/save")
 def index():
-    distributive = current_app.connection.Distributive()
-    distributive['url'] = 'hhhhhhh'
-    distributive['version'] = 'v0.10'
-    distributive.save()
-
     return jsonify({'error': 0})

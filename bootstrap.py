@@ -4,7 +4,8 @@ from flask_login import LoginManager
 
 # Import routes
 from routes.api import api
-from routes.site import site
+from routes.environment import environment
+from routes.distributive import distributive
 from routes.auth import auth
 
 # Import models
@@ -17,7 +18,6 @@ import os
 
 # Import external libs
 from mongokit import Connection
-from bson.objectid import ObjectId
 
 # Create app
 app = Flask(__name__)
@@ -29,8 +29,9 @@ env = os.getenv('APPLICATION_ENV', 'development')
 app.config.from_object('configs.' + env + '.Config')
 
 # Register routes
-app.register_blueprint(site)
 app.register_blueprint(auth)
+app.register_blueprint(environment)
+app.register_blueprint(distributive)
 app.register_blueprint(api)
 
 # Database connection
