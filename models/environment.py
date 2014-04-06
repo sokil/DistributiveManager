@@ -8,3 +8,7 @@ class Environment(Document):
     structure = {
         'name': unicode
     }
+
+    default_values = {
+        'name': ''
+    }

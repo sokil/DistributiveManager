@@ -1,0 +1,21 @@
+{% extends "menu_layout.html" %}
+{% block body %}
+
+<ol class="breadcrumb">
+    <li><a href="/environment">Environment</a></li>
+    <li>Editor</li>
+</ol>
+
+<form method="post" action="{{ url_for('environment.environment_save') }}">
+    <input type="hidden" name="id" value="{{ environment._id }}" />
+
+    <div class="form-group">
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon glyphicon-bookmark"> Name</span></span>
+            <input type="text" class="form-control" name="name" placeholder="Environment name" value="{{ environment.name }}" autocomplete="off">
+        </div>
+    </div>
+
+    <input type="submit" value="Save" class="btn btn-success" />
+</form>
+{% endblock %}

@@ -9,6 +9,7 @@
     </head>
     <body>
         <div class="container">
+            {% for message in get_flashed_messages() %}<div class="alert alert-danger">{{ message }}</div>{% endfor %}
             <ul class="nav nav-tabs top-space bottom-space" id="tabPages">
                 <li class="active"><a href="/environment">Environment</a></li>
                 <li><a href="/distributives">Distributives</a></li>

@@ -1,5 +1,9 @@
 from mongokit import Document
-from bson.objectid import ObjectId
+import re
+
+def version_validator(version):
+    regex = re.compile(r'^[0-9]+(?:\.[0-9]+(?:\.[0-9]+(?:-[0-9a-zA-Z\-\.]+)?)?)?$', re.IGNORECASE);
+    return bool(regex.match(version))
 
 
 class Distributive(Document):
@@ -10,4 +14,8 @@ class Distributive(Document):
         'version': str,
         'environment': str,
         'url': str
+    }
+
+    validators = {
+        'version': version_validator
     }
