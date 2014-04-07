@@ -10,8 +10,6 @@ distributive = Blueprint('distributive', __name__)
 @login_required
 def distributive_list(environment_name):
 
-    print current_app.config['SERVER_NAME']
-
     # environment
     environment=current_app.connection.Environment.find_one({'name': environment_name})
     if environment is None:
