@@ -20,7 +20,7 @@
     {% for distributive in distributives %}
     <tr>
         <td><a href="{{ distributive.get_url() }}">{{ distributive.get_url() }}</a></td>
-        <td>{{ distributive.version }}</td>
+        <td>{{ distributive.version.caption }}</td>
         <td><a href="{{ url_for('distributive.distributive_edit', distributive_id=distributive['_id']) }}"><span class="glyphicon glyphicon-pencil"</a></td>
     </tr>
     {% endfor %}

@@ -8,11 +8,6 @@ from werkzeug.utils import secure_filename
 from werkzeug.datastructures import FileStorage
 
 
-def version_validator(version):
-    regex = re.compile(r'^[0-9]+(?:\.[0-9]+(?:\.[0-9]+(?:-[0-9a-zA-Z\-\.]+)?)?)?$', re.IGNORECASE);
-    return bool(regex.match(version))
-
-
 class Distributive(Document):
     __database__ = 'dl'
     __collection__ = 'distributives'
@@ -20,18 +15,20 @@ class Distributive(Document):
     environment_instance = None
 
     structure = {
-        'version': unicode,
+        'version': {
+            'number': int,
+            'caption': unicode
+        },
         'environment': ObjectId,
         'file': unicode
     }
 
     default_values = {
-        'version': '',
+        'version': {
+            'number': None,
+            'caption': ''
+        },
         'file': ''
-    }
-
-    validators = {
-        'version': version_validator
     }
 
     def set_environment(self, environment):
@@ -59,7 +56,31 @@ class Distributive(Document):
         return self.environment_instance
 
     def set_version(self, version):
-        self['version'] = version
+
+        # test
+        regex = re.compile(r'^([0-9]+)(?:\.([0-9]+)(?:\.([0-9]+)(?:-([0-9a-zA-Z\-\.]+))?)?)?$', re.IGNORECASE)
+        match = regex.match(version)
+        if match is None:
+            raise Exception('Version format is wrong')
+
+        # str
+        self['version']['caption'] = version
+
+        # str to int
+        groups = match.groups()
+        print groups;
+        int_version = int(groups[0]) * 10000000
+        if groups[1]:
+            int_version += int(groups[1]) * 10000
+
+        if groups[2]:
+            int_version += int(groups[2]) * 10
+
+        if groups[3] is None:
+            int_version += 1;
+
+        self['version']['number'] = int_version
+
         return self
 
     def set_file(self, file):
