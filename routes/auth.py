@@ -20,7 +20,7 @@ def login():
             return redirect(url_for('auth.login'))
 
         login_user(user)
-        return redirect(url_for('site.index'))
+        return redirect(url_for('environment.environment_list'))
 
 
 @auth.route("/logout")

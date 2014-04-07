@@ -7,6 +7,7 @@ from routes.api import api
 from routes.environment import environment
 from routes.distributive import distributive
 from routes.auth import auth
+from routes.users import users
 
 # Import models
 from models.user import User
@@ -33,6 +34,7 @@ app.register_blueprint(auth)
 app.register_blueprint(environment)
 app.register_blueprint(distributive)
 app.register_blueprint(api)
+app.register_blueprint(users)
 
 # Database connection
 app.connection = Connection(app.config['MONGODB_HOST'], app.config['MONGODB_PORT'])

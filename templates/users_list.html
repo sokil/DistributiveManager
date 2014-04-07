@@ -1,0 +1,7 @@
+{% extends "menu_layout.html" %}
+{% block body %}
+    <h1>Users</h1>
+    <div class="btn-toolbar bottom-space" role="toolbar">
+        <a href="{{ url_for('users.users_edit') }}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span> Add</a>
+    </div>
+{% endblock %}

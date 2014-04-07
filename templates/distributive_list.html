@@ -4,18 +4,24 @@
 
     <ol class="breadcrumb">
         <li><a href="/environment">Environment</a></li>
-        <li>Distributives for {{ environment.name }}</li>
+        <li>Distributives for {{ environment['name'] }}</li>
     </ol>
+
+    <div class="btn-toolbar bottom-space" role="toolbar">
+        <a href="{{ url_for('distributive.distributive_new', environment_id=environment['_id']) }}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span> Add</a>
+    </div>
 
     <table class="table table-striped table-hover">
     <tr>
         <th>Url</th>
         <th>Version</th>
+        <th></th>
     </tr>
     {% for distributive in distributives %}
     <tr>
-        <td><a href="{{ distributive.url }}">{{ distributive.url }}</a></td>
+        <td><a href="{{ distributive.get_url() }}">{{ distributive.get_url() }}</a></td>
         <td>{{ distributive.version }}</td>
+        <td><a href="{{ url_for('distributive.distributive_edit', distributive_id=distributive['_id']) }}"><span class="glyphicon glyphicon-pencil"</a></td>
     </tr>
     {% endfor %}
     </table>

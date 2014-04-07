@@ -1,0 +1,32 @@
+{% extends "menu_layout.html" %}
+{% block body %}
+
+<ol class="breadcrumb">
+    <li><a href="/environment">Environment</a></li>
+    <li><a href="{{ url_for('distributive.distributive_list', environment_name=distributive.get_environment()['name']) }}">Distributives of environment "{{ distributive.get_environment()['name'] }}"</a></li>
+    <li>Editor</li>
+</ol>
+
+<form method="post" action="{{ url_for('distributive.distributive_save') }}" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="{{ distributive['_id'] }}" />
+
+    {% if not distributive['_id'] %}
+    <input type="hidden" name="environment" value="{{ distributive.get_environment()['_id'] }}" />
+    {% endif %}
+
+    <div class="form-group">
+        <label>Version</label>
+        <input type="text" class="form-control" name="version" placeholder="Distributive version" value="{{ distributive['version'] }}" autocomplete="off">
+    </div>
+
+    <div class="form-group">
+        <label>File</label>
+        <input type="file" name="file">
+        {% if distributive.is_file_attached() %}
+        <p class="help-block">Url: <a href="{{ distributive.get_url() }}">{{ distributive.get_url() }}</a></p>
+        {% endif %}
+    </div>
+
+    <input type="submit" value="Save" class="btn btn-success" />
+</form>
+{% endblock %}

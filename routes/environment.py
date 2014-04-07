@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, current_app, render_template, redirect, url_for, request
+from flask import Blueprint, jsonify, current_app, render_template, redirect, url_for, request, flash
 from flask_login import login_required
 from bson.objectid import ObjectId
 
@@ -43,5 +43,7 @@ def environment_save():
 
     item['name'] = request.form['name']
     item.save()
+
+    flash('Successfully saved')
 
     return redirect(url_for('.environment_edit', environment_id=item['_id']))

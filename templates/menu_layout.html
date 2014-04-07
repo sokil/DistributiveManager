@@ -8,12 +8,13 @@
         <link rel="stylesheet" href="/css/bootstrap.custom.css" />
     </head>
     <body>
-        <div class="container">
-            {% for message in get_flashed_messages() %}<div class="alert alert-danger">{{ message }}</div>{% endfor %}
-            <ul class="nav nav-tabs top-space bottom-space" id="tabPages">
-                <li class="active"><a href="/environment">Environment</a></li>
-                <li><a href="/distributives">Distributives</a></li>
+        <div class="container top-space">
+            <ul class="nav nav-tabs bottom-space" id="tabPages">
+                <li class="active"><a href="{{ url_for('environment.environment_list') }}"><span class="glyphicon glyphicon-file"></span> Distributives</a></li>
+                <li><a href="{{ url_for('users.users_list') }}"><span class="glyphicon glyphicon-user"></span> Users</a></li>
+                <li><a href="{{ url_for('auth.logout') }}"><span class="glyphicon glyphicon-log-out"></span> Sign out</a></li>
             </ul>
+            {% for message in get_flashed_messages() %}<div class="alert alert-danger">{{ message }}</div>{% endfor %}
             {% block body %}{% endblock %}
         </div>
     </body>
