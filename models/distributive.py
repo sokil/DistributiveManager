@@ -25,7 +25,7 @@ class Distributive(Document):
 
     default_values = {
         'version.caption': '',
-        'file': ''
+        'file': u''
     }
 
     def set_environment(self, environment):
@@ -65,7 +65,7 @@ class Distributive(Document):
 
         # str to int
         groups = match.groups()
-        print groups;
+
         int_version = int(groups[0]) * 10000000
         if groups[1]:
             int_version += int(groups[1]) * 10000

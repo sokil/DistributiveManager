@@ -78,6 +78,7 @@ def distributive_save():
 
     # upload file
     if request.files['file'].filename:
+
         distributive_instance.set_file(request.files['file'])
 
     distributive_instance.save()
