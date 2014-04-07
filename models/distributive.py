@@ -24,10 +24,7 @@ class Distributive(Document):
     }
 
     default_values = {
-        'version': {
-            'number': None,
-            'caption': ''
-        },
+        'version.caption': '',
         'file': ''
     }
 
