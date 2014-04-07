@@ -8,9 +8,13 @@ class User(Document):
     __collection__ = 'users'
 
     structure = {
-        'email': str,
-        'password': str,
-        'salt': str
+        'email': unicode,
+        'password': unicode,
+        'salt': unicode
+    }
+
+    default_values = {
+        'email': ''
     }
 
     def is_authenticated(self):
@@ -27,9 +31,9 @@ class User(Document):
 
     def set_password(self, password):
         # generate salt
-        salt = ''
-        alphabet = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890!@#$%^&*()'
-        alphabet_length = len(alphabet);
+        salt = u''
+        alphabet = u'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890!@#$%^&*()'
+        alphabet_length = len(alphabet) - 1
         for i in range(0, 10):
             salt += alphabet[randint(0, alphabet_length)]
 

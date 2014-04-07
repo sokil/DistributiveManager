@@ -1,0 +1,24 @@
+{% extends "menu_layout.html" %}
+{% block body %}
+
+<ol class="breadcrumb">
+    <li><a href="{{ url_for('user.user_list') }}">Users</a></li>
+    <li>Editor</li>
+</ol>
+
+<form method="post" action="{{ url_for('user.user_save') }}">
+    <input type="hidden" name="id" value="{{ user._id }}" />
+
+    <div class="form-group">
+        <label>E-mail</label>
+        <input type="text" class="form-control" name="email" value="{{ user.email }}" autocomplete="off">
+    </div>
+
+    <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" name="password" autocomplete="off">
+    </div>
+
+    <input type="submit" value="Save" class="btn btn-success" />
+</form>
+{% endblock %}
