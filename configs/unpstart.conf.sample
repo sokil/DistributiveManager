@@ -1,4 +1,4 @@
-description "myapp"
+description "{DESCRIPTION}"
 
 start on (filesystem)
 stop on runlevel [016]
