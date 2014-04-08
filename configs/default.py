@@ -12,3 +12,8 @@ class Config(object):
     DISTRIBUTIVE_DIR = 'dist'
 
     PERMANENT_SESSION_LIFETIME = 1200
+
+    LOGGER_EMAILS = []
+
+    SMTP_FROM = None
+    SMTP_HOST = '127.0.0.1'

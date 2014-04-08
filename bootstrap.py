@@ -52,6 +52,19 @@ def load_user(email):
     user = app.connection.User.find_one({'email': email})
     return user
 
+# Log errors
+if not app.debug and len(app.config['LOGGER_EMAILS']) > 0:
+    import logging
+    from logging.handlers import SMTPHandler
+    mail_handler = SMTPHandler(
+        app.config['SMTP_HOST'],
+        app.config['SMTP_FROM'],
+        app.config['LOGGER_EMAILS'],
+        'Distributive Manager error'
+    )
+    mail_handler.setLevel(logging.ERROR)
+    app.logger.addHandler(mail_handler)
+
 # Run app
 if __name__ == "__main__":
     app.run(port=app.config['PORT'])
