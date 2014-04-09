@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, render_template, current_app, redirect, url_for, request
+from flask import Blueprint, jsonify, render_template, current_app, redirect, url_for, request, flash
 from flask_login import login_required
 from bson.objectid import ObjectId
 
@@ -37,5 +37,7 @@ def user_save():
     user_instance['email'] = request.form['email']
     user_instance.set_password(request.form['password'])
     user_instance.save()
+
+    flash('User saved successfully')
 
     return redirect(url_for('user.user_edit', user_id=user_instance['_id']))
