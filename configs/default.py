@@ -13,6 +13,7 @@ class Config(object):
 
     PERMANENT_SESSION_LIFETIME = 1200
 
+    LOGGER_ENABLED = True
     LOGGER_EMAILS = []
 
     SMTP_FROM = None

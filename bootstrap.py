@@ -53,7 +53,7 @@ def load_user(email):
     return user
 
 # Log errors
-if not app.debug and len(app.config['LOGGER_EMAILS']) > 0:
+if app.config['LOGGER_ENABLED'] and len(app.config['LOGGER_EMAILS']) > 0:
     import logging
     from logging.handlers import SMTPHandler
     mail_handler = SMTPHandler(
