@@ -45,7 +45,7 @@ class User(Document):
 
     @staticmethod
     def get_password_hash(password, salt):
-        return crypt(password, salt)
+        return unicode(crypt(password, salt))
 
     def has_password(self, password):
         return self.get_password_hash(password, self['salt']) == self['password']
