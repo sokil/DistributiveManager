@@ -1,6 +1,7 @@
 # Import Flask
 from flask import Flask
 from flask_login import LoginManager
+from flask_babel import Babel
 
 # Import routes
 from routes.api import api
@@ -51,6 +52,9 @@ loginManager.init_app(app)
 def load_user(email):
     user = app.connection.User.find_one({'email': email})
     return user
+
+# Localization
+app.babel = Babel(app)
 
 # Log errors
 if app.config['LOGGER_ENABLED'] and len(app.config['LOGGER_EMAILS']) > 0:

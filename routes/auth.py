@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, render_template, current_app, redirect, url_for, flash, request
 from flask_login import login_required, login_user, logout_user
+from flask_babel import gettext
 from models.user import User
 
 auth = Blueprint('auth', __name__)
@@ -12,11 +13,11 @@ def login():
         user = current_app.connection.User.find_one({u'email': request.form['email']})
 
         if user is None:
-            flash('Email wrong')
+            flash(gettext(u'Email wrong'))
             return redirect(url_for('auth.login'))
 
         if not user.has_password(request.form['password']):
-            flash('Password wrong')
+            flash(gettext(u'Password wrong'))
             return redirect(url_for('auth.login'))
 
         login_user(user)
