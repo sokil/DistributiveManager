@@ -44,18 +44,18 @@ app.connection.register([Distributive])
 app.connection.register([Environment])
 
 # Login manager
-app.loginManager = LoginManager()
-app.loginManager.login_view = 'auth.login'
-app.loginManager.init_app(app)
+loginManager = LoginManager()
+loginManager.login_view = 'auth.login'
+loginManager.init_app(app)
 
-@app.loginManager.user_loader
+@loginManager.user_loader
 def load_user(email):
     return app.connection.User.find_one({'email': email})
 
 # Localization
-app.babel = Babel(app)
+babel = Babel(app)
 
-@app.babel.localeselector
+@babel.localeselector
 def get_locale():
     return request.accept_languages.best_match(app.config['SUPPORTED_LANGUAGES'])
 
