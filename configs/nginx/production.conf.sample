@@ -5,6 +5,8 @@ server
     
     root /var/www/dl/public;
 
+    client_max_body_size 200M;
+
     access_log /var/log/nginx/dl.access.log;
     error_log /var/log/nginx/dl.error.log;
     
