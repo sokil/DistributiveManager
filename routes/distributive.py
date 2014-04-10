@@ -1,5 +1,5 @@
 import os
-from flask import Blueprint, jsonify, render_template, request, current_app, redirect, url_for, flash
+from flask import Blueprint, jsonify, render_template, request, current_app, redirect, url_for, flash, abort
 from flask_login import login_required
 from bson.objectid import ObjectId
 
@@ -84,3 +84,19 @@ def distributive_save():
     flash('Successfully saved')
 
     return redirect(url_for('distributive.distributive_edit', distributive_id=distributive_instance['_id']))
+
+
+@distributive.route("/distributive/latest/<environment_name>")
+@distributive.route("/latest/<environment_name>")
+def distributive_latest(environment_name):
+    # get environment
+    environment = current_app.connection.Environment.find_one({'name': environment_name})
+    if environment is None:
+        abort(404)
+
+    # get latest dist
+    distributive_instance = environment.get_latest_distributive()
+    if distributive_instance is None:
+        abort(404)
+
+    return redirect(distributive_instance.get_url())
