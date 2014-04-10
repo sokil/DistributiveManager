@@ -10,13 +10,13 @@ def login():
     if request.method == 'GET':
         return render_template('login.html')
     else:
-        user = current_app.connection.User.find_one({u'email': request.form['email']})
+        user = current_app.connection.User.find_one({u'email': request.form['email'].strip()})
 
         if user is None:
             flash(gettext(u'Email wrong'))
             return redirect(url_for('auth.login'))
 
-        if not user.has_password(request.form['password']):
+        if not user.has_password(request.form['password'].strip()):
             flash(gettext(u'Password wrong'))
             return redirect(url_for('auth.login'))
 
