@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>Distributive manager</title>
+        <title>{{ _('Distributive manager') }}</title>
         <script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
         <script type="text/javascript" src="/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="/css/bootstrap.min.css" />
@@ -10,9 +10,9 @@
     <body>
         <div class="container top-space">
             <ul class="nav nav-tabs bottom-space" id="tabPages">
-                <li class="active"><a href="{{ url_for('environment.environment_list') }}"><span class="glyphicon glyphicon-file"></span> Distributives</a></li>
-                <li><a href="{{ url_for('user.user_list') }}"><span class="glyphicon glyphicon-user"></span> Users</a></li>
-                <li><a href="{{ url_for('auth.logout') }}"><span class="glyphicon glyphicon-log-out"></span> Sign out</a></li>
+                <li class="active"><a href="{{ url_for('environment.environment_list') }}"><span class="glyphicon glyphicon-file"></span> {{ _('Distributives') }}</a></li>
+                <li><a href="{{ url_for('user.user_list') }}"><span class="glyphicon glyphicon-user"></span> {{ _('Users') }}</a></li>
+                <li><a href="{{ url_for('auth.logout') }}"><span class="glyphicon glyphicon-log-out"></span> {{ _('Sign out') }}</a></li>
             </ul>
             {% for message in get_flashed_messages() %}<div class="alert alert-danger">{{ message }}</div>{% endfor %}
             {% block body %}{% endblock %}

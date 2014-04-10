@@ -1,5 +1,5 @@
 # Import Flask
-from flask import Flask
+from flask import Flask, request
 from flask_login import LoginManager
 from flask_babel import Babel
 
@@ -44,17 +44,20 @@ app.connection.register([Distributive])
 app.connection.register([Environment])
 
 # Login manager
-loginManager = LoginManager()
-loginManager.login_view = 'auth.login'
-loginManager.init_app(app)
+app.loginManager = LoginManager()
+app.loginManager.login_view = 'auth.login'
+app.loginManager.init_app(app)
 
-@loginManager.user_loader
+@app.loginManager.user_loader
 def load_user(email):
-    user = app.connection.User.find_one({'email': email})
-    return user
+    return app.connection.User.find_one({'email': email})
 
 # Localization
 app.babel = Babel(app)
+
+@app.babel.localeselector
+def get_locale():
+    return request.accept_languages.best_match(app.config['SUPPORTED_LANGUAGES'])
 
 # Log errors
 if app.config['LOGGER_ENABLED'] and len(app.config['LOGGER_EMAILS']) > 0:

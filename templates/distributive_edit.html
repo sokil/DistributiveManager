@@ -2,9 +2,9 @@
 {% block body %}
 
 <ol class="breadcrumb">
-    <li><a href="/environment">Environment</a></li>
-    <li><a href="{{ url_for('distributive.distributive_list', environment_name=distributive.get_environment()['name']) }}">Distributives of environment "{{ distributive.get_environment()['name'] }}"</a></li>
-    <li>Editor</li>
+    <li><a href="/environment">{{ _('Environment') }}</a></li>
+    <li><a href="{{ url_for('distributive.distributive_list', environment_name=distributive.get_environment()['name']) }}">{{ _('Distributives of environment "%(name)s"', name=distributive.get_environment()['name']) }}</a></li>
+    <li>{{ _('Editor') }}</li>
 </ol>
 
 <form method="post" action="{{ url_for('distributive.distributive_save') }}" enctype="multipart/form-data">
@@ -15,18 +15,18 @@
     {% endif %}
 
     <div class="form-group">
-        <label>Version</label>
+        <label>{{ _('Version') }}</label>
         <input type="text" class="form-control" name="version" placeholder="Distributive version" value="{{ distributive['version']['caption'] }}" autocomplete="off">
     </div>
 
     <div class="form-group">
-        <label>File</label>
+        <label>{{ _('File') }}</label>
         <input type="file" name="file">
         {% if distributive.is_file_attached() %}
-        <p class="help-block">Url: <a href="{{ distributive.get_url() }}">{{ distributive.get_url() }}</a></p>
+        <p class="help-block">{{ _('Url') }}: <a href="{{ distributive.get_url() }}">{{ distributive.get_url() }}</a></p>
         {% endif %}
     </div>
 
-    <input type="submit" value="Save" class="btn btn-success" />
+    <input type="submit" value="{{ _('Save') }}" class="btn btn-success" />
 </form>
 {% endblock %}

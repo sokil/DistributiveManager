@@ -2,18 +2,18 @@
 {% block body %}
 
 <ol class="breadcrumb">
-    <li><a href="/environment">Environment</a></li>
-    <li>Editor</li>
+    <li><a href="/environment">{{ _('Environment') }}</a></li>
+    <li>{{ _('Editor') }}</li>
 </ol>
 
 <form method="post" action="{{ url_for('environment.environment_save') }}">
     <input type="hidden" name="id" value="{{ environment._id }}" />
 
     <div class="form-group">
-        <label>Name</label>
-        <input type="text" class="form-control" name="name" placeholder="Environment name" value="{{ environment.name }}" autocomplete="off">
+        <label>{{ _('Name') }}</label>
+        <input type="text" class="form-control" name="name" placeholder="{{ _('Environment name') }}" value="{{ environment.name }}" autocomplete="off">
     </div>
 
-    <input type="submit" value="Save" class="btn btn-success" />
+    <input type="submit" value="{{ _('Save') }}" class="btn btn-success" />
 </form>
 {% endblock %}

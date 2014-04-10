@@ -18,3 +18,6 @@ class Config(object):
 
     SMTP_FROM = None
     SMTP_HOST = '127.0.0.1'
+
+    SUPPORTED_LANGUAGES = ['en', 'uk']
+    BABEL_DEFAULT_LOCALE = 'uk'
