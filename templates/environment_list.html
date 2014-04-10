@@ -14,8 +14,20 @@
     <tr>
         <td><a href="/distributive/list/{{ environment.name }}">{{ environment.name }}</a></td>
         <td><a href="{{ environment.get_latest_distributive_url() }}">{{ environment.get_latest_distributive_url() }}</a></td>
-        <td><a href="/environment/edit/{{ environment._id }}"><span class="glyphicon glyphicon-pencil"></span></a></td>
+        <td>
+            <a href="{{ url_for('environment.environment_edit', environment_id=environment._id) }}"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a href="{{ url_for('environment.environment_delete', environment_id=environment._id) }}" class="delete"><span class="glyphicon glyphicon-trash"></span></a>
+        </td>
     </tr>
     {% endfor %}
     </table>
+    <script type="text/javascript">
+        $('.delete').click(function(e) {
+            if(!confirm('{{ _('Do you realy want to delete environment?') }}')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+    </script>
 {% endblock %}
+

@@ -47,3 +47,10 @@ def environment_save():
     flash('Successfully saved')
 
     return redirect(url_for('.environment_edit', environment_id=item['_id']))
+
+
+@environment.route('/environment/delete/<environment_id>')
+@login_required
+def environment_delete(environment_id):
+    current_app.connection.Environment.find_one({'_id': ObjectId(environment_id)}).delete();
+    return redirect(url_for('environment.environment_list'))
