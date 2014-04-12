@@ -12,8 +12,6 @@ class Distributive(Document):
     __database__ = 'dl'
     __collection__ = 'distributives'
 
-    environment_instance = None
-
     structure = {
         'version': {
             'number': int,
@@ -27,6 +25,10 @@ class Distributive(Document):
         'version.caption': '',
         'file': u''
     }
+
+    def __init__(self):
+        super(Distributive, self).__init__()
+        self.environment_instance = None
 
     def set_environment(self, environment):
         if type(environment) != Environment:
