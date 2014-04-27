@@ -11,7 +11,7 @@ distributive = Blueprint('distributive', __name__)
 def distributive_list(environment_name):
 
     # environment
-    environment=current_app.connection.Environment.find_one({'name': environment_name})
+    environment = current_app.connection.Environment.find_one({'name': environment_name})
     if environment is None:
         raise Exception('Environment not found')
 

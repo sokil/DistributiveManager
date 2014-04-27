@@ -26,9 +26,7 @@ class Distributive(Document):
         'file': u''
     }
 
-    def __init__(self):
-        super(Distributive, self).__init__()
-        self.environment_instance = None
+    environment_instance = None
 
     def set_environment(self, environment):
         if type(environment) != Environment:
