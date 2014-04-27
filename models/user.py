@@ -1,6 +1,6 @@
 from mongokit import Document
 from random import randint
-from crypt import crypt;
+from crypt import crypt
 
 
 class User(Document):
