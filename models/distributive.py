@@ -54,6 +54,18 @@ class Distributive(Document):
 
     def set_version(self, version):
 
+        # check if version already specified
+        check_dist_existance_data = {
+            'environment': self['environment'],
+            'version.caption': version
+        }
+
+        if '_id' in self:
+            check_dist_existance_data['_id'] = {'$ne', self['_id']}
+
+        if current_app.connection.Distributive.find_one(check_dist_existance_data) is not None:
+            raise Exception('Distributive with defined version already exists')
+
         # test
         regex = re.compile(r'^([0-9]+)(?:\.([0-9]+)(?:\.([0-9]+)(?:-([0-9a-zA-Z\-\.]+))?)?)?$', re.IGNORECASE)
         match = regex.match(version)
