@@ -59,7 +59,11 @@ def distributive_save():
 
     distributive_id = request.form['id']
     if distributive_id:
+        # get distributive
         distributive_instance = current_app.connection.Distributive.find_one({'_id': ObjectId(distributive_id)})
+
+        # get environment
+        environment_instance = current_app.connection.Environment.find_one({'_id': distributive_instance['environment']})
     else:
         # get environment
         environment_id = request.form['environment']

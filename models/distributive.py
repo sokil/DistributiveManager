@@ -3,7 +3,7 @@ import os
 from mongokit import Document
 from bson.objectid import ObjectId
 from models.environment import Environment
-from flask import current_app, request
+from flask import current_app, request, flash, redirect, url_for
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import FileStorage
 
@@ -80,17 +80,36 @@ class Distributive(Document):
 
         return self
 
-    def set_file(self, file):
+    def set_file(self, file, overwrite=False):
+
         if type(file) is not FileStorage:
             raise Exception('FileStorage instance must be passed')
 
-        self['file'] = unicode(secure_filename(file.filename))
+        filename = unicode(secure_filename(file.filename))
 
+        # check if file already exists
+        if not overwrite:
+            real_filename = os.path.join(self.get_storage_dir(), filename)
+            if os.path.isfile(real_filename) and real_filename != self.get_path():
+                raise Exception('File with same name already exists')
+
+        # delete file if previously uploaded
+        if self.is_file_attached():
+            os.remove(self.get_path())
+
+        # define new file name
+        self['file'] = filename
+
+        # save file
         file.save(self.get_path())
+
         return self
 
+    def get_storage_dir(self):
+        return os.path.join(os.getcwd(), 'public', current_app.config['DISTRIBUTIVE_DIR'])
+
     def get_path(self):
-        return os.path.join(os.getcwd(), 'public', current_app.config['DISTRIBUTIVE_DIR'], self['file'])
+        return os.path.join(self.get_storage_dir(), self['file'])
 
     def get_url(self, canonical=True):
         url = '/' + os.path.join(current_app.config['DISTRIBUTIVE_DIR'], self['file'])
