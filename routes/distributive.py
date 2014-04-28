@@ -83,7 +83,7 @@ def distributive_save():
 
     flash('Successfully saved')
 
-    return redirect(url_for('distributive.distributive_edit', distributive_id=distributive_instance['_id']))
+    return redirect(url_for('.distributive_list', environment_name=environment_instance['name']))
 
 
 @distributive.route("/distributive/latest/<environment_name>")
@@ -100,3 +100,21 @@ def distributive_latest(environment_name):
         abort(404)
 
     return redirect(distributive_instance.get_url())
+
+
+
+@distributive.route('/distributive/delete/<distributive_id>')
+@login_required
+def distributive_delete(distributive_id):
+    # get distributive
+    distributive_instance = current_app.connection.Distributive.find_one({'_id': ObjectId(distributive_id)})
+    if distributive_instance is None:
+        raise Exception('Distributive not found')
+
+    # get related environment
+    environment_instance = current_app.connection.Environment.find_one({'_id': distributive_instance['environment']})
+
+    # delete distributive
+    distributive_instance.delete()
+
+    return redirect(url_for('.distributive_list', environment_name=environment_instance['name']))

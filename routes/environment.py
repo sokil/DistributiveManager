@@ -52,5 +52,8 @@ def environment_save():
 @environment.route('/environment/delete/<environment_id>')
 @login_required
 def environment_delete(environment_id):
-    current_app.connection.Environment.find_one({'_id': ObjectId(environment_id)}).delete();
+    current_app.connection.Environment\
+        .find_one({'_id': ObjectId(environment_id)})\
+        .delete();
+
     return redirect(url_for('.environment_list'))

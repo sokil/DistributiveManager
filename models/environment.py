@@ -28,3 +28,11 @@ class Environment(Document):
 
     def get_latest_distributive_url(self):
         return 'http://' + current_app.config['HOSTNAME'] + url_for('distributive.distributive_latest', environment_name=self['name'])
+
+    def delete(self):
+        # delete distributives
+        for distributive in current_app.connection.Distributive.find({'environment': self['_id']}):
+            distributive.delete()
+
+        # delete envitonment
+        super(Environment, self).delete();

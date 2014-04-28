@@ -84,16 +84,29 @@ class Distributive(Document):
         if type(file) is not FileStorage:
             raise Exception('FileStorage instance must be passed')
 
-        filename = unicode(secure_filename(file.filename))
-        real_file_name = os.path.join(os.getcwd(), 'public', current_app.config['DISTRIBUTIVE_DIR'], filename)
-        file.save(real_file_name)
+        self['file'] = unicode(secure_filename(file.filename))
 
-        self['file'] = filename
-
+        file.save(self.get_path())
         return self
 
-    def get_url(self):
-        return 'http://' + current_app.config['HOSTNAME'] + '/' + os.path.join(current_app.config['DISTRIBUTIVE_DIR'], self['file'])
+    def get_path(self):
+        return os.path.join(os.getcwd(), 'public', current_app.config['DISTRIBUTIVE_DIR'], self['file'])
+
+    def get_url(self, canonical=True):
+        url = '/' + os.path.join(current_app.config['DISTRIBUTIVE_DIR'], self['file'])
+
+        if canonical:
+            url = 'http://' + current_app.config['HOSTNAME'] + url
+
+        return url
 
     def is_file_attached(self):
         return bool(self['file'])
+
+    def delete(self):
+        # delete file
+        if self.is_file_attached():
+            os.remove(self.get_path())
+
+        # delete document
+        super(Distributive, self).delete()

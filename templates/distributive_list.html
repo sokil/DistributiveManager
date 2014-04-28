@@ -21,7 +21,14 @@
     <tr>
         <td><a href="{{ distributive.get_url() }}">{{ distributive.get_url() }}</a></td>
         <td>{{ distributive.version.caption }}</td>
-        <td><a href="{{ url_for('distributive.distributive_edit', distributive_id=distributive['_id']) }}"><span class="glyphicon glyphicon-pencil"</a></td>
+        <td>
+            <a href="{{ url_for('.distributive_edit', distributive_id=distributive['_id']) }}">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </a>
+            <a href="{{ url_for('.distributive_delete', distributive_id=distributive['_id']) }}">
+                <span class="glyphicon glyphicon-trash"></span>
+            </a>
+        </td>
     </tr>
     {% endfor %}
     </table>
