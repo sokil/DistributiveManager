@@ -3,3 +3,4 @@ mongokit
 flask
 flask-login
 Flask-Babel
+flask_wtf
