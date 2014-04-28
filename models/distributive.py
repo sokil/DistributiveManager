@@ -136,7 +136,7 @@ class Distributive(Document):
 
     def delete(self):
         # delete file
-        if self.is_file_attached():
+        if self.is_file_attached() and os.path.isfile(self.get_path()):
             os.remove(self.get_path())
 
         # delete document
