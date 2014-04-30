@@ -9,7 +9,7 @@ class Config(object):
 
     SECRET_KEY = 'fa+hq4;tr7q4@ra8*t62^783,.87'
 
-    DISTRIBUTIVE_DIR = 'dist'
+    DISTRIBUTIVE_DIR = '/var/www/dl/dist'
 
     PERMANENT_SESSION_LIFETIME = 1200
 

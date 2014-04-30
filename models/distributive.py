@@ -120,18 +120,24 @@ class Distributive(Document):
         return self
 
     def get_storage_dir(self):
-        return os.path.join(os.getcwd(), 'public', current_app.config['DISTRIBUTIVE_DIR'])
+        return current_app.config['DISTRIBUTIVE_DIR']
 
     def get_path(self):
         return os.path.join(self.get_storage_dir(), self['file'])
 
     def get_url(self, canonical=True):
-        url = '/' + os.path.join(current_app.config['DISTRIBUTIVE_DIR'], self['file'])
 
+        # get environment
+        environment_instance = current_app.connection.Environment.find_one({'_id': self['environment']})
+
+        url = '/dl/' + environment_instance['name'] + '/' + self['version']['caption']
         if canonical:
             url = 'http://' + current_app.config['SERVER_NAME'] + url
 
         return url
+
+    def get_accel_redirect_url(self):
+        return '/dist/' + self['file']
 
     def is_file_attached(self):
         return bool(self['file'])

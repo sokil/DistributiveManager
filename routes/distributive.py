@@ -122,3 +122,26 @@ def distributive_delete(distributive_id):
     distributive_instance.delete()
 
     return redirect(url_for('.distributive_list', environment_name=environment_instance['name']))
+
+
+@distributive.route('/dl/<environment_name>/<version_caption>')
+def distributive_download(environment_name, version_caption):
+
+    # get distributive instance
+    environment_instance = current_app.connection.Environment.find_one({'name': environment_name})
+    distributive_instance = current_app.connection.Distributive.find_one({
+        'environment': environment_instance['_id'],
+        'version.caption': version_caption
+    })
+
+    # increment download counter in stat
+
+
+
+    # redirect to download
+    from flask import Response
+    response = Response()
+    response.headers.add('Content-Disposition', 'attachment; filename="' + distributive_instance['file'] + '"')
+    response.headers.add('X-Accel-Redirect', distributive_instance.get_accel_redirect_url())
+    return response
+

@@ -9,7 +9,6 @@ environment = Blueprint('environment', __name__)
 @environment.route('/environment/list')
 @login_required
 def environment_list():
-    print dir(request)
     return render_template('environment_list.html',
         list=current_app.connection.Environment.find()
     )
