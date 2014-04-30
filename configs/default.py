@@ -1,5 +1,5 @@
 class Config(object):
-    HOSTNAME = 'dl'
+    SERVER_NAME = 'dl.local'
 
     PORT = 9001
     DEBUG = True

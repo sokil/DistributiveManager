@@ -129,7 +129,7 @@ class Distributive(Document):
         url = '/' + os.path.join(current_app.config['DISTRIBUTIVE_DIR'], self['file'])
 
         if canonical:
-            url = 'http://' + current_app.config['HOSTNAME'] + url
+            url = 'http://' + current_app.config['SERVER_NAME'] + url
 
         return url
 

@@ -10,8 +10,8 @@
     <body>
         <div class="container top-space">
             <ul class="nav nav-tabs bottom-space" id="tabPages">
-                <li class="active"><a href="{{ url_for('environment.environment_list') }}"><span class="glyphicon glyphicon-file"></span> {{ _('Distributives') }}</a></li>
-                <li><a href="{{ url_for('user.user_list') }}"><span class="glyphicon glyphicon-user"></span> {{ _('Users') }}</a></li>
+                <li{% if request.blueprint == 'environment' %} class="active"{% endif %}><a href="{{ url_for('environment.environment_list') }}"><span class="glyphicon glyphicon-file"></span> {{ _('Distributives') }}</a></li>
+                <li{% if request.blueprint == 'user' %} class="active"{% endif %}><a href="{{ url_for('user.user_list') }}"><span class="glyphicon glyphicon-user"></span> {{ _('Users') }}</a></li>
                 <li><a href="{{ url_for('auth.logout') }}"><span class="glyphicon glyphicon-log-out"></span> {{ _('Sign out') }}</a></li>
             </ul>
             {% for message in get_flashed_messages() %}<div class="alert alert-danger">{{ message }}</div>{% endfor %}
