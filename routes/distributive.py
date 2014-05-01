@@ -90,23 +90,6 @@ def distributive_save():
     return redirect(url_for('.distributive_list', environment_name=environment_instance['name']))
 
 
-@distributive.route("/distributive/latest/<environment_name>")
-@distributive.route("/latest/<environment_name>")
-def distributive_latest(environment_name):
-    # get environment
-    environment = current_app.connection.Environment.find_one({'name': environment_name})
-    if environment is None:
-        abort(404)
-
-    # get latest storage
-    distributive_instance = environment.get_latest_distributive()
-    if distributive_instance is None:
-        abort(404)
-
-    return redirect(distributive_instance.get_url())
-
-
-
 @distributive.route('/distributive/delete/<distributive_id>')
 @login_required
 def distributive_delete(distributive_id):
@@ -123,16 +106,25 @@ def distributive_delete(distributive_id):
 
     return redirect(url_for('.distributive_list', environment_name=environment_instance['name']))
 
-
+@distributive.route('/dl/<environment_name>')
 @distributive.route('/dl/<environment_name>/<version_caption>')
-def distributive_download(environment_name, version_caption):
+def distributive_download(environment_name, version_caption='latest'):
 
     # get distributive instance
     environment_instance = current_app.connection.Environment.find_one({'name': environment_name})
-    distributive_instance = current_app.connection.Distributive.find_one({
-        'environment': environment_instance['_id'],
-        'version.caption': version_caption
-    })
+    if environment_instance is None:
+        abort(404)
+
+    if version_caption == 'latest':
+        distributive_instance = environment_instance.get_latest_distributive()
+    else:
+        distributive_instance = current_app.connection.Distributive.find_one({
+            'environment': environment_instance['_id'],
+            'version.caption': version_caption
+        })
+
+    if distributive_instance is None:
+        abort(404)
 
     # increment download counter in stat
     distributive_instance.hit()

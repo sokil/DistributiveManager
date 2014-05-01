@@ -27,7 +27,7 @@ class Environment(Document):
 
 
     def get_latest_distributive_url(self):
-        return 'http://' + current_app.config['SERVER_NAME'] + url_for('distributive.distributive_latest', environment_name=self['name'])
+        return 'http://' + current_app.config['SERVER_NAME'] + url_for('distributive.distributive_download', environment_name=self['name'])
 
     def delete(self):
         # delete distributives
