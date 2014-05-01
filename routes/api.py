@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify
-from flask import current_app, jsonify, abort
+from flask import current_app, jsonify, abort, request
 from bson.objectid import ObjectId
 
 api = Blueprint('api', __name__)
@@ -54,8 +54,16 @@ def stat_download(environment_name):
     # get max values for each environment
     from datetime import datetime
     from time import mktime
-    time_from = datetime.today().replace(hour=0, minute=0, second=0, microsecond=0)
-    time_to = datetime.today().replace(hour=23, minute=59, second=59, microsecond=0)
+
+    if 'time_from' in request.args:
+        time_from = datetime.fromtimestamp(float(request.args.get('time_from')))
+    else:
+        time_from = datetime.today().replace(hour=0, minute=0, second=0, microsecond=0)
+
+    if 'time_to' in request.args:
+        time_to = datetime.fromtimestamp(float(request.args.get('time_to')))
+    else:
+        time_to = datetime.today().replace(hour=23, minute=59, second=59, microsecond=0)
 
     result = current_app.connection.DownloadStat.collection.aggregate([
         {
