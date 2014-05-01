@@ -137,7 +137,7 @@ class Distributive(Document):
         return url
 
     def get_accel_redirect_url(self):
-        return '/dist/' + self['file']
+        return '/storage/' + self['file']
 
     def is_file_attached(self):
         return bool(self['file'])

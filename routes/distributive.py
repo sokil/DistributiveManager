@@ -98,7 +98,7 @@ def distributive_latest(environment_name):
     if environment is None:
         abort(404)
 
-    # get latest dist
+    # get latest storage
     distributive_instance = environment.get_latest_distributive()
     if distributive_instance is None:
         abort(404)
