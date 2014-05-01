@@ -1,0 +1,19 @@
+{% extends "menu_layout.html" %}
+{% block body %}
+
+<ol class="breadcrumb">
+    <li><a href="{{ url_for('.apikey_list') }}">{{ _('Apikeys') }}</a></li>
+    <li>{{ _('Editor') }}</li>
+</ol>
+
+<form method="post" action="{{ url_for('.apikey_save') }}">
+    <input type="hidden" name="id" value="{{ apikey['_id'] }}" />
+
+    <div class="form-group">
+        <label>{{ _('Key name') }}</label>
+        <input type="text" class="form-control" name="name" placeholder="{{ _('Key name') }}" value="{{ apikey['name'] }}" autocomplete="off">
+    </div>
+
+    <input type="submit" value="{{ _('Save') }}" class="btn btn-success" />
+</form>
+{% endblock %}

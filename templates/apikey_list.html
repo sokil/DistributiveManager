@@ -1,0 +1,22 @@
+{% extends "menu_layout.html" %}
+{% block body %}
+    <h1>{{ _('API keys') }}</h1>
+
+    <div class="btn-toolbar bottom-space">
+        <a href="{{ url_for('.apikey_new') }}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span> {{ _('Add') }}</a>
+    </div>
+
+    <table class="table table-hover table-striped">
+        <tr>
+            <th>{{ _('Key name') }}</th>
+            <th>{{ _('Key') }}</th>
+        </tr>
+        {% for key in key_list %}
+        <tr>
+            <td>{{ key['name'] }}</td>
+            <td>{{ key['key'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

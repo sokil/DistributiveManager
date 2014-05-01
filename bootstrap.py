@@ -3,13 +3,6 @@ from flask import Flask, request
 from flask_login import LoginManager
 from flask_babel import Babel
 
-# Import routes
-from routes.api import api
-from routes.environment import environment
-from routes.distributive import distributive
-from routes.auth import auth
-from routes.user import user
-
 # Import internal libs
 import os
 
@@ -26,10 +19,17 @@ env = os.getenv('APPLICATION_ENV', 'development')
 app.config.from_object('configs.' + env + '.Config')
 
 # Register routes
+from routes.auth import auth
 app.register_blueprint(auth)
+from routes.environment import environment
 app.register_blueprint(environment)
+from routes.distributive import distributive
 app.register_blueprint(distributive)
+from routes.api import api
 app.register_blueprint(api)
+from routes.apikey import apikey
+app.register_blueprint(apikey)
+from routes.user import user
 app.register_blueprint(user)
 
 # Database connection
@@ -43,6 +43,8 @@ from models.environment import Environment
 app.connection.register([Environment])
 from models.downloadStat import DownloadStat
 app.connection.register([DownloadStat])
+from models.apikey import Apikey
+app.connection.register([Apikey])
 
 # Login manager
 loginManager = LoginManager()
