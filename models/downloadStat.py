@@ -21,7 +21,7 @@ class DownloadStat(Document):
     def hit(distributive):
     # get time
         from datetime import datetime
-        t = datetime.today()
+        t = datetime.utcnow()
         t = t.replace(minute=t.minute - t.minute % 5, second=0, microsecond=0)
 
         # increment counter

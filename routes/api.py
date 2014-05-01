@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify
-from flask import current_app
+from flask import current_app, jsonify, abort
 from bson.objectid import ObjectId
 
 api = Blueprint('api', __name__)
@@ -42,3 +42,50 @@ def latest():
         }
 
     return jsonify(max_versions)
+
+@api.route('/api/stat/download/<environment_name>')
+def stat_download(environment_name):
+
+    # environment
+    environment = current_app.connection.Environment.find_one({'name': environment_name})
+    if environment is None:
+        abort(404)
+
+    # get max values for each environment
+    from datetime import datetime
+    from time import mktime
+    time_from = datetime.today().replace(hour=0, minute=0, second=0, microsecond=0)
+    time_to = datetime.today().replace(hour=23, minute=59, second=59, microsecond=0)
+
+    result = current_app.connection.DownloadStat.collection.aggregate([
+        {
+            '$match': {
+                'environment_id': environment['_id'],
+                'time': {
+                    '$gte': time_from,
+                    '$lte': time_to
+                }
+            },
+        }, {
+            '$group': {
+                '_id': '$time',
+                'count': {'$sum': '$count'}
+            }
+        }, {
+            '$sort': {'_id': 1}
+        }
+    ])
+
+    stat = {}
+    readable = {}
+    total = 0
+    for item in result['result']:
+        stat[int(mktime(item['_id'].timetuple()))] = item['count']
+        readable[str(item['_id'])] = item['count']
+        total += item['count']
+
+    return jsonify({
+        'stat': stat,
+        'total': total,
+        'readable': readable
+    })

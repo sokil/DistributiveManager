@@ -13,7 +13,7 @@ def distributive_list(environment_name):
     # environment
     environment = current_app.connection.Environment.find_one({'name': environment_name})
     if environment is None:
-        raise Exception('Environment not found')
+        abort(404)
 
     # distributive list
     distributives = current_app.connection.Distributive.find({'environment': environment['_id']})
