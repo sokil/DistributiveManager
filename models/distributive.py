@@ -63,8 +63,6 @@ class Distributive(Document):
         if '_id' in self:
             check_dist_existance_data['_id'] = {'$ne': self['_id']}
 
-        print check_dist_existance_data
-
         if current_app.connection.Distributive.find_one(check_dist_existance_data) is not None:
             raise Exception('Distributive with defined version already exists')
 
@@ -149,3 +147,6 @@ class Distributive(Document):
 
         # delete document
         super(Distributive, self).delete()
+
+    def hit(self):
+        current_app.connection.DownloadStat.hit(self)

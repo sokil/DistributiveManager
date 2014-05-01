@@ -1,6 +1,6 @@
 *.pyc
 .project
-dist/*
+storage/*
 .idea
 configs/nginx/production.conf
 configs/production.py
