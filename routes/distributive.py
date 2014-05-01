@@ -135,8 +135,7 @@ def distributive_download(environment_name, version_caption):
     })
 
     # increment download counter in stat
-
-
+    current_app.connection.DownloadStat.hit()
 
     # redirect to download
     from flask import Response

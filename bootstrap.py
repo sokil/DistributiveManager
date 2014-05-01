@@ -10,11 +10,6 @@ from routes.distributive import distributive
 from routes.auth import auth
 from routes.user import user
 
-# Import models
-from models.user import User
-from models.distributive import Distributive
-from models.environment import Environment
-
 # Import internal libs
 import os
 
@@ -39,9 +34,15 @@ app.register_blueprint(user)
 
 # Database connection
 app.connection = Connection(app.config['MONGODB_HOST'], app.config['MONGODB_PORT'])
+
+from models.user import User
 app.connection.register([User])
+from models.distributive import Distributive
 app.connection.register([Distributive])
+from models.environment import Environment
 app.connection.register([Environment])
+from models.downloadStat import DownloadStat
+app.connection.register([DownloadStat])
 
 # Login manager
 loginManager = LoginManager()
