@@ -106,7 +106,7 @@ class Distributive(Document):
                 raise Exception('File with same name already exists')
 
         # delete file if previously uploaded
-        if self.is_file_attached():
+        if self.is_file_attached() and os.path.isfile(self.get_path()):
             os.remove(self.get_path())
 
         # define new file name
