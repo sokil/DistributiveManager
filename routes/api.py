@@ -77,15 +77,12 @@ def stat_download(environment_name):
     ])
 
     stat = {}
-    readable = {}
     total = 0
     for item in result['result']:
         stat[int(mktime(item['_id'].timetuple()))] = item['count']
-        readable[str(item['_id'])] = item['count']
         total += item['count']
 
     return jsonify({
         'stat': stat,
         'total': total,
-        'readable': readable
     })
