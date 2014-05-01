@@ -24,4 +24,4 @@ class DownloadStat(Document):
         t = t.replace(minute=t.minute - t.minute % 5, second=0, microsecond=0)
 
         # increment counter
-        print current_app.connection.DownloadStat.collection.update({'time': t}, {'$inc': {'count': 1}}, upsert=True)
+        current_app.connection.DownloadStat.collection.update({'time': t}, {'$inc': {'count': 1}}, upsert=True)
