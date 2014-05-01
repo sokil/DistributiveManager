@@ -11,6 +11,11 @@
         <a href="{{ url_for('distributive.distributive_new', environment_id=environment['_id']) }}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span> {{ _('Add') }}</a>
     </div>
 
+    <div class="bg-info bottom-space top-space" style="padding: 5px;">
+        <span class="glyphicon glyphicon-link"></span>
+        {{ _('Latest distributive') }}: <a href="{{ environment.get_latest_distributive_url() }}">{{ environment.get_latest_distributive_url() }}</a>
+    </div>
+
     <table class="table table-striped table-hover">
     <tr>
         <th>{{ _('Url') }}</th>
