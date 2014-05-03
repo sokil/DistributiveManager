@@ -1,0 +1,22 @@
+{% extends "menu_layout.html" %}
+{% block breadcrumbs %}
+<ol class="breadcrumb">
+    <li><a href="{{ url_for('.settings_index') }}">{{ _('Settings') }}</a></li>
+    <li>{{ _('API keys') }}</li>
+</ol>
+{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-md-2">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a href="{{ url_for('settings.apikey_list') }}">{{ _('API keys') }}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-10">
+            {% block settings_body %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}
+

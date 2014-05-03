@@ -15,8 +15,8 @@
         <td><a href="/distributive/list/{{ environment.name }}">{{ environment.name }}</a></td>
         <td><a href="{{ environment.get_latest_distributive_url() }}">{{ environment.get_latest_distributive_url() }}</a></td>
         <td>
-            <a href="{{ url_for('environment.environment_edit', environment_id=environment._id) }}"><span class="glyphicon glyphicon-pencil"></span></a>
-            <a href="{{ url_for('environment.environment_delete', environment_id=environment._id) }}" class="delete"><span class="glyphicon glyphicon-trash"></span></a>
+            <a href="{{ url_for('environment.environment_edit', environment_id=environment._id) }}" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-pencil"></span></a>
+            <a href="{{ url_for('environment.environment_delete', environment_id=environment._id) }}" class="btn btn-success btn-xs delete"><span class="glyphicon glyphicon-trash"></span></a>
         </td>
     </tr>
     {% endfor %}

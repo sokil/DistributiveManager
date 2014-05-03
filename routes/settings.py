@@ -1,21 +1,29 @@
 from flask import Blueprint, jsonify
 from flask import current_app, jsonify, abort, request, render_template, redirect, url_for, flash
 from bson.objectid import ObjectId
+from flask_babel import gettext
 
-apikey = Blueprint('apikey', __name__)
+settings = Blueprint('settings', __name__)
 
 
-@apikey.route("/apikeys")
+@settings.route('/settings')
+def settings_index():
+    return redirect(url_for('.apikey_list'))
+
+
+@settings.route("/settings/apikeys")
 def apikey_list():
     key_list = current_app.connection.Apikey.find()
     return render_template('apikey_list.html', key_list=key_list)
 
-@apikey.route("/apikey/new")
+
+@settings.route("/settings/apikey/new")
 def apikey_new():
     apikey_instance = current_app.connection.Apikey()
     return render_template('apikey_edit.html', apikey=apikey_instance)
 
-@apikey.route("/apikey/edit/<id>")
+
+@settings.route("/settings/apikey/edit/<id>")
 def apikey_edit(id):
     apikey_instance = current_app.connection.Apikey.find_one({'_id': ObjectId(id)})
     if apikey_instance is None:
@@ -23,7 +31,8 @@ def apikey_edit(id):
 
     return render_template('apikey_edit.html', apikey=apikey_instance)
 
-@apikey.route('/apikey/save', methods=['POST'])
+
+@settings.route('/settings/apikey/save', methods=['POST'])
 def apikey_save():
     if request.form.get('id'):
         apikey_instance = current_app.connection.Apikey.find_one({'_id': ObjectId(request.form.get('id'))})
@@ -36,7 +45,33 @@ def apikey_save():
 
     apikey_instance.save()
 
-    flash('Successfully saved')
+    flash(gettext('Successfully saved'))
+
+    return redirect(url_for('.apikey_list'))
+
+
+@settings.route("/settings/apikey/delete/<id>")
+def apikey_delete(id):
+    apikey_instance = current_app.connection.Apikey.find_one({'_id': ObjectId(id)})
+    if apikey_instance is None:
+        abort(404)
+
+    apikey_instance.delete()
+
+    flash(gettext('Successfully deleted'))
+
+    return redirect(url_for('.apikey_list'))
+
+
+@settings.route("/settings/apikey/regenerate/<id>")
+def apikey_regenerate(id):
+    apikey_instance = current_app.connection.Apikey.find_one({'_id': ObjectId(id)})
+    if apikey_instance is None:
+        abort(404)
+
+    apikey_instance.regenerate_key()
+
+    flash(gettext('Key successfully regenerated'))
 
     return redirect(url_for('.apikey_list'))
 

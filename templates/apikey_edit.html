@@ -1,11 +1,12 @@
-{% extends "menu_layout.html" %}
-{% block body %}
-
+{% extends "settings_layout.html" %}
+{% block breadcrumbs %}
 <ol class="breadcrumb">
-    <li><a href="{{ url_for('.apikey_list') }}">{{ _('Apikeys') }}</a></li>
+    <li><a href="{{ url_for('.settings_index') }}">{{ _('Settings') }}</a></li>
+    <li><a href="{{ url_for('.apikey_list') }}">{{ _('API keys') }}</a></li>
     <li>{{ _('Editor') }}</li>
 </ol>
-
+{% endblock %}
+{% block settings_body %}
 <form method="post" action="{{ url_for('.apikey_save') }}">
     <input type="hidden" name="id" value="{{ apikey['_id'] }}" />
 

@@ -1,5 +1,11 @@
-{% extends "menu_layout.html" %}
-{% block body %}
+{% extends "settings_layout.html" %}
+{% block breadcrumbs %}
+<ol class="breadcrumb">
+    <li><a href="{{ url_for('.settings_index') }}">{{ _('Settings') }}</a></li>
+    <li>{{ _('API keys') }}</li>
+</ol>
+{% endblock %}
+{% block settings_body %}
     <h1>{{ _('API keys') }}</h1>
 
     <div class="btn-toolbar bottom-space">
@@ -10,11 +16,17 @@
         <tr>
             <th>{{ _('Key name') }}</th>
             <th>{{ _('Key') }}</th>
+            <th></th>
         </tr>
         {% for key in key_list %}
         <tr>
             <td>{{ key['name'] }}</td>
             <td>{{ key['key'] }}</td>
+            <td>
+                <a href="{{ url_for('.apikey_edit', id=key['_id']) }}" class="btn btn-success btn-xs" title="{{ _('Edit') }}"><span class="glyphicon glyphicon-edit"></span></a>
+                <a href="{{ url_for('.apikey_regenerate', id=key['_id']) }}" class="btn btn-success btn-xs" title="{{ _('Refresh') }}"><span class="glyphicon glyphicon-refresh"></span></a>
+                <a href="{{ url_for('.apikey_delete', id=key['_id']) }}" class="btn btn-success btn-xs" title="{{ _('Delete') }}"><span class="glyphicon glyphicon-trash"></span></a>
+            </td>
         </tr>
         {% endfor %}
     </table>

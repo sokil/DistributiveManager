@@ -24,6 +24,7 @@ class Apikey(Document):
 
     def regenerate_key(self):
         self['key'] = self.generate_key()
+        self.save()
 
     def save(self, uuid=False, validate=None, safe=True, *args, **kwargs):
 

@@ -104,6 +104,8 @@ def distributive_delete(distributive_id):
     # delete distributive
     distributive_instance.delete()
 
+    flash('Successfully deleted')
+
     return redirect(url_for('.distributive_list', environment_name=environment_instance['name']))
 
 @distributive.route('/dl/<environment_name>')

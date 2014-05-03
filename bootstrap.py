@@ -27,8 +27,8 @@ from routes.distributive import distributive
 app.register_blueprint(distributive)
 from routes.api import api
 app.register_blueprint(api)
-from routes.apikey import apikey
-app.register_blueprint(apikey)
+from routes.settings import settings
+app.register_blueprint(settings)
 from routes.user import user
 app.register_blueprint(user)
 
