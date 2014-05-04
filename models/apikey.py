@@ -20,7 +20,7 @@ class Apikey(Document):
     def generate_key():
         import random
         alphabet = u'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890'
-        return ''.join([random.choice(alphabet) for _ in range(80)])
+        return ''.join([random.choice(alphabet) for _ in range(40)])
 
     def regenerate_key(self):
         self['key'] = self.generate_key()

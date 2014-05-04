@@ -5,6 +5,7 @@ from flask_babel import Babel
 
 # Import internal libs
 import os
+import sys
 
 # Import external libs
 from mongokit import Connection
@@ -17,6 +18,9 @@ app.config.from_object('configs.default.Config')
 
 env = os.getenv('APPLICATION_ENV', 'development')
 app.config.from_object('configs.' + env + '.Config')
+
+# configure import path
+sys.path.append(os.path.join(os.getcwd(), 'library'))
 
 # Register routes
 from routes.auth import auth

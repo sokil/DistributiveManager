@@ -4,6 +4,37 @@ from bson.objectid import ObjectId
 
 api = Blueprint('api', __name__)
 
+# auth
+from TokenAuth import TokenAuthReader
+token_auth = TokenAuthReader()
+
+@token_auth.data_verifier
+def verify_data(data):
+    key = current_app.connection.Apikey.find_one({'_id': ObjectId(data['key_id'])})
+    print key
+    if key is None:
+        return False
+
+    return True
+
+
+@api.route('/api/token')
+def get_token():
+    if 'api_key' not in request.args:
+        abort(400)
+
+    key = current_app.connection.Apikey.find_one({'key': request.args['api_key']})
+    if key is None:
+        abort(403)
+
+    from TokenAuth import TokenAuthGenerator
+    generator = TokenAuthGenerator()
+    generator.set_data({'key_id': str(key['_id'])})
+
+    return jsonify({
+        'token': generator.get_token()
+    })
+
 
 @api.route("/api/latest")
 def latest():
@@ -43,7 +74,9 @@ def latest():
 
     return jsonify(max_versions)
 
+
 @api.route('/api/stat/download/<environment_name>')
+@token_auth.login_required
 def stat_download(environment_name):
 
     # environment
