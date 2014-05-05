@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-04-10 19:00+0300\n"
+"POT-Creation-Date: 2014-05-05 11:30+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,6 +25,67 @@ msgstr ""
 msgid "Password wrong"
 msgstr ""
 
+#: ../../routes/settings.py:48
+msgid "Successfully saved"
+msgstr ""
+
+#: ../../routes/settings.py:61
+msgid "Successfully deleted"
+msgstr ""
+
+#: ../../routes/settings.py:74
+msgid "Key successfully regenerated"
+msgstr ""
+
+#: ../../templates/apikey_edit.html:4 ../../templates/apikey_list.html:4
+#: ../../templates/menu_layout.html:15 ../../templates/settings_layout.html:4
+msgid "Settings"
+msgstr ""
+
+#: ../../templates/apikey_edit.html:5 ../../templates/apikey_list.html:5
+#: ../../templates/apikey_list.html:9 ../../templates/settings_layout.html:5
+#: ../../templates/settings_layout.html:13
+msgid "API keys"
+msgstr ""
+
+#: ../../templates/apikey_edit.html:6 ../../templates/distributive_edit.html:7
+#: ../../templates/environment_edit.html:6 ../../templates/user_edit.html:6
+msgid "Editor"
+msgstr ""
+
+#: ../../templates/apikey_edit.html:14 ../../templates/apikey_edit.html:15
+#: ../../templates/apikey_list.html:17
+msgid "Key name"
+msgstr ""
+
+#: ../../templates/apikey_edit.html:18
+#: ../../templates/distributive_edit.html:30
+#: ../../templates/environment_edit.html:17 ../../templates/user_edit.html:22
+msgid "Save"
+msgstr ""
+
+#: ../../templates/apikey_list.html:12
+#: ../../templates/distributive_list.html:11
+#: ../../templates/environment_list.html:5 ../../templates/user_list.html:5
+msgid "Add"
+msgstr ""
+
+#: ../../templates/apikey_list.html:18
+msgid "Key"
+msgstr ""
+
+#: ../../templates/apikey_list.html:26
+msgid "Edit"
+msgstr ""
+
+#: ../../templates/apikey_list.html:27
+msgid "Refresh"
+msgstr ""
+
+#: ../../templates/apikey_list.html:28
+msgid "Delete"
+msgstr ""
+
 #: ../../templates/distributive_edit.html:5
 #: ../../templates/distributive_list.html:6
 #: ../../templates/environment_edit.html:5
@@ -39,7 +100,7 @@ msgid "Distributives of environment \"%(name)s\""
 msgstr ""
 
 #: ../../templates/distributive_edit.html:18
-#: ../../templates/distributive_list.html:17
+#: ../../templates/distributive_list.html:22
 msgid "Version"
 msgstr ""
 
@@ -48,26 +109,20 @@ msgid "File"
 msgstr ""
 
 #: ../../templates/distributive_edit.html:26
-#: ../../templates/distributive_list.html:16
+#: ../../templates/distributive_list.html:21
 msgid "Url"
 msgstr ""
 
-#: ../../templates/distributive_edit.html:30
-#: ../../templates/environment_edit.html:17 ../../templates/user_edit.html:22
-msgid "Save"
+#: ../../templates/distributive_list.html:3 ../../templates/menu_layout.html:13
+msgid "Distributives"
 msgstr ""
 
-#: ../../templates/distributive_list.html:11
-#: ../../templates/environment_list.html:5 ../../templates/user_list.html:5
-msgid "Add"
+#: ../../templates/distributive_list.html:16
+msgid "Latest distributive"
 msgstr ""
 
 #: ../../templates/empty_layout.html:4 ../../templates/menu_layout.html:4
 msgid "Distributive manager"
-msgstr ""
-
-#: ../../templates/environment_edit.html:6 ../../templates/user_edit.html:6
-msgid "Editor"
 msgstr ""
 
 #: ../../templates/environment_edit.html:13
@@ -77,6 +132,14 @@ msgstr ""
 
 #: ../../templates/environment_edit.html:14
 msgid "Environment name"
+msgstr ""
+
+#: ../../templates/environment_list.html:10
+msgid "Latest"
+msgstr ""
+
+#: ../../templates/environment_list.html:26
+msgid "Do you realy want to delete environment?"
 msgstr ""
 
 #: ../../templates/login.html:8 ../../templates/user_edit.html:13
@@ -92,16 +155,12 @@ msgstr ""
 msgid "Sign in"
 msgstr ""
 
-#: ../../templates/menu_layout.html:13
-msgid "Distributives"
-msgstr ""
-
 #: ../../templates/menu_layout.html:14 ../../templates/user_edit.html:5
 #: ../../templates/user_list.html:3
 msgid "Users"
 msgstr ""
 
-#: ../../templates/menu_layout.html:15
+#: ../../templates/menu_layout.html:16
 msgid "Sign out"
 msgstr ""
 
