@@ -11,7 +11,6 @@ token_auth = TokenAuthReader()
 @token_auth.data_verifier
 def verify_data(data):
     key = current_app.connection.Apikey.find_one({'_id': ObjectId(data['key_id'])})
-    print key
     if key is None:
         return False
 
