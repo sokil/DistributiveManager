@@ -14,12 +14,14 @@
 
     <table class="table table-hover table-striped">
         <tr>
+            <th>{{ _('Id') }}</th>
             <th>{{ _('Key name') }}</th>
             <th>{{ _('Key') }}</th>
             <th></th>
         </tr>
         {% for key in key_list %}
         <tr>
+            <td>{{ key['_id'] }}</td>
             <td>{{ key['name'] }}</td>
             <td>{{ key['key'] }}</td>
             <td>

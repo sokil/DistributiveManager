@@ -19,11 +19,19 @@ def verify_data(data):
 
 @api.route('/api/token')
 def get_token():
-    if 'api_key' not in request.args:
+    if 'app_id' not in request.args:
         abort(400)
 
-    key = current_app.connection.Apikey.find_one({'key': request.args['api_key']})
+    if 'app_key' not in request.args:
+        abort(400)
+
+    # Get key
+    key = current_app.connection.Apikey.find_one({'_id': ObjectId(request.args['app_id'])})
     if key is None:
+        abort(403)
+
+    # Check key
+    if key != request.args['app_key']:
         abort(403)
 
     from TokenAuth import TokenAuthGenerator

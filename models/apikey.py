@@ -34,3 +34,21 @@ class Apikey(Document):
 
         # save
         Document.save(self, uuid, validate, safe, *args, **kwargs)
+
+    def __eq__(self, key):
+
+        # if object passed
+        if isinstance(key, Apikey):
+            return key['key'] == self['key']
+
+        # if string passed
+        return key == self['key']
+
+    def __ne__(self, key):
+
+        # if object passed
+        if isinstance(key, Apikey):
+            return key['key'] != self['key']
+
+        # if string passed
+        return key != self['key']
