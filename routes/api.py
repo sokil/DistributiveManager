@@ -204,7 +204,6 @@ def stat_download(environment_name=None):
 
         if group:
             data = item['_id']
-            print data
             data['count'] = item['count']
             del data['env']
             stat[item_env_name].append(data)
