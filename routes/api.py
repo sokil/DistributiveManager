@@ -81,17 +81,14 @@ def latest():
 
     return jsonify(max_versions)
 
-
+@api.route('/api/stat/download')
 @api.route('/api/stat/download/<environment_name>')
 @token_auth.login_required
-def stat_download(environment_name):
+def stat_download(environment_name=None):
 
-    # environment
-    environment = current_app.connection.Environment.find_one({'name': environment_name})
-    if environment is None:
-        abort(404)
+    match = {}
 
-    # get max values for each environment
+    # time
     from datetime import datetime
     from time import mktime
 
@@ -105,18 +102,34 @@ def stat_download(environment_name):
     else:
         time_to = datetime.today().replace(hour=23, minute=59, second=59, microsecond=0)
 
+    match['time'] = {
+        '$gte': time_from,
+        '$lte': time_to
+    }
+
+    # environment
+    if environment_name:
+        environment = current_app.connection.Environment.find_one({'name': environment_name})
+        if not environment:
+            abort(404)
+
+        environment_collection = {str(environment['_id']): environment_name}
+        match['environment_id'] = environment['_id']
+    else:
+        environment_collection = {}
+        for env in current_app.connection.Environment.find():
+            environment_collection[str(env['_id'])] = env['name']
+
+    # aggregate
     result = current_app.connection.DownloadStat.collection.aggregate([
         {
-            '$match': {
-                'environment_id': environment['_id'],
-                'time': {
-                    '$gte': time_from,
-                    '$lte': time_to
-                }
-            },
+            '$match': match,
         }, {
             '$group': {
-                '_id': '$time',
+                '_id': {
+                    'time': '$time',
+                    'env': '$environment_id'
+                },
                 'count': {'$sum': '$count'}
             }
         }, {
@@ -124,10 +137,19 @@ def stat_download(environment_name):
         }
     ])
 
+    # prepare result
     stat = {}
     total = 0
     for item in result['result']:
-        stat[int(mktime(item['_id'].timetuple()))] = item['count']
+
+        item_env_name = environment_collection[str(item['_id']['env'])]
+        if item_env_name not in stat:
+            stat[item_env_name] = {}
+
+        item_timestamp = int(mktime(item['_id']['time'].timetuple()))
+
+        stat[item_env_name][item_timestamp] = item['count']
+
         total += item['count']
 
     return jsonify({
