@@ -86,6 +86,8 @@ def latest():
 @token_auth.login_required
 def stat_download(environment_name=None):
 
+    pipelines = []
+
     match = {}
 
     # time
@@ -120,11 +122,63 @@ def stat_download(environment_name=None):
         for env in current_app.connection.Environment.find():
             environment_collection[str(env['_id'])] = env['name']
 
-    # aggregate
-    result = current_app.connection.DownloadStat.collection.aggregate([
-        {
-            '$match': match,
-        }, {
+    pipelines.append({'$match': match})
+
+    # group by time interval
+    if 'group' in request.args and request.args['group'] in ['hour', 'day', 'week', 'month']:
+        group = request.args['group']
+    else:
+        group = None
+
+    if group == 'hour':
+        group_pipeline = {
+            '$group': {
+                '_id': {
+                    'y': {'$year': '$time'},
+                    'm': {'$month': '$time'},
+                    'd': {'$dayOfMonth': '$time'},
+                    'h': {'$hour': '$time'},
+                    'env': '$environment_id'
+                },
+                'count': {'$sum': '$count'}
+            }
+        }
+    elif group == 'day':
+        group_pipeline = {
+            '$group': {
+                '_id': {
+                    'y': {'$year': '$time'},
+                    'm': {'$month': '$time'},
+                    'd': {'$dayOfMonth': '$time'},
+                    'env': '$environment_id'
+                },
+                'count': {'$sum': '$count'}
+            }
+        }
+    elif group == 'week':
+        group_pipeline = {
+            '$group': {
+                '_id': {
+                    'y': {'$year': '$time'},
+                    'w': {'$week': '$time'},
+                    'env': '$environment_id'
+                },
+                'count': {'$sum': '$count'}
+            }
+        }
+    elif group == 'month':
+        group_pipeline = {
+            '$group': {
+                '_id': {
+                    'y': {'$year': '$time'},
+                    'm': {'$month': '$time'},
+                    'env': '$environment_id'
+                },
+                'count': {'$sum': '$count'}
+            }
+        }
+    else:
+        group_pipeline = {
             '$group': {
                 '_id': {
                     'time': '$time',
@@ -132,10 +186,12 @@ def stat_download(environment_name=None):
                 },
                 'count': {'$sum': '$count'}
             }
-        }, {
-            '$sort': {'_id': 1}
         }
-    ])
+
+    pipelines.append(group_pipeline)
+
+    # aggregate
+    result = current_app.connection.DownloadStat.collection.aggregate(pipelines)
 
     # prepare result
     stat = {}
@@ -144,11 +200,17 @@ def stat_download(environment_name=None):
 
         item_env_name = environment_collection[str(item['_id']['env'])]
         if item_env_name not in stat:
-            stat[item_env_name] = {}
+            stat[item_env_name] = []
 
-        item_timestamp = int(mktime(item['_id']['time'].timetuple()))
-
-        stat[item_env_name][item_timestamp] = item['count']
+        if group:
+            data = item['_id']
+            print data
+            data['count'] = item['count']
+            del data['env']
+            stat[item_env_name].append(data)
+        else:
+            item_timestamp = int(mktime(item['_id']['time'].timetuple()))
+            stat[item_env_name].append({'time': item_timestamp, 'count': item['count']})
 
         total += item['count']
 
