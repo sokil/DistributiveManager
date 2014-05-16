@@ -16,7 +16,10 @@ def distributive_list(environment_name):
         abort(404)
 
     # distributive list
-    distributives = current_app.connection.Distributive.find({'environment': environment['_id']})
+    distributives = current_app.connection.Distributive.find({
+        'environment': environment['_id']
+    }).sort('version.number', -1)
+
     if distributives is None:
         distributives = []
 
