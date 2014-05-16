@@ -94,7 +94,7 @@ def latest_env(environment_name):
     try:
         distributive = current_app.connection.Distributive.find({
             'environment': environment['_id'],
-        }).sort('version.number', 1).limit(1)[0]
+        }).sort('version.number', -1).limit(1)[0]
     except IndexError, e:
         return jsonify({})
 
