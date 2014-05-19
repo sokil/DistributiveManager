@@ -41,7 +41,7 @@ def environment_save():
     else:
         item = current_app.connection.Environment()
 
-    item['name'] = request.form['name']
+    item['name'] = request.form['name'].strip()
     item.save()
 
     flash('Successfully saved')
