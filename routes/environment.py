@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, current_app, render_template, redirect, url_for, request, flash
 from flask_login import login_required
+from flask_babel import gettext
 from bson.objectid import ObjectId
 
 environment = Blueprint('environment', __name__)
@@ -42,9 +43,13 @@ def environment_save():
         item = current_app.connection.Environment()
 
     item['name'] = request.form['name'].strip()
-    item.save()
 
-    flash('Successfully saved')
+    from mongokit import ValidationError
+    try:
+        item.save()
+        flash(gettext('Successfully saved'))
+    except ValidationError, e:
+        flash(e.message)
 
     return redirect(url_for('.environment_list'))
 

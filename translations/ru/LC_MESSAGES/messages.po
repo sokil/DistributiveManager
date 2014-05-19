@@ -1,4 +1,4 @@
-# Ukrainian translations for PROJECT.
+# Russian translations for PROJECT.
 # Copyright (C) 2014 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
@@ -10,7 +10,7 @@ msgstr ""
 "POT-Creation-Date: 2014-05-20 00:17+0300\n"
 "PO-Revision-Date: 2014-05-20 00:18+0300\n"
 "Last-Translator: Dmytro Sokil <dmytro.sokil@gmail.com>\n"
-"Language-Team: uk <LL@li.org>\n"
+"Language-Team: ru <LL@li.org>\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "MIME-Version: 1.0\n"
@@ -21,27 +21,27 @@ msgstr ""
 
 #: ../../models/environment.py:26
 msgid "Environment with same name already exists"
-msgstr "Середовище з таким ім’ям вже зареєсторване"
+msgstr "Среда с таким именем уже зарегистрированна"
 
 #: ../../routes/auth.py:16
 msgid "Email wrong"
-msgstr "Електронна пошта невірна"
+msgstr "Ошибочный адрес электронной почты"
 
 #: ../../routes/auth.py:20
 msgid "Password wrong"
-msgstr "Пароль невірний"
+msgstr "Неверный пароль"
 
 #: ../../routes/environment.py:50 ../../routes/settings.py:48
 msgid "Successfully saved"
-msgstr "Успішно збережено"
+msgstr "Успешно сохранено"
 
 #: ../../routes/settings.py:61
 msgid "Successfully deleted"
-msgstr "Успішно видалено"
+msgstr "Успешно удалено"
 
 #: ../../routes/settings.py:74
 msgid "Key successfully regenerated"
-msgstr "Ключ успішно згенеровано"
+msgstr "Ключ успешно сгенерирован"
 
 #: ../../templates/apikey_edit.html:4 ../../templates/apikey_list.html:4
 #: ../../templates/menu_layout.html:15 ../../templates/settings_layout.html:4
@@ -52,7 +52,7 @@ msgstr "Настройки"
 #: ../../templates/apikey_list.html:9 ../../templates/settings_layout.html:5
 #: ../../templates/settings_layout.html:13
 msgid "API keys"
-msgstr "Ключі API"
+msgstr "Ключи API"
 
 #: ../../templates/apikey_edit.html:6 ../../templates/distributive_edit.html:7
 #: ../../templates/environment_edit.html:6 ../../templates/user_edit.html:6
@@ -62,19 +62,19 @@ msgstr "Редактор"
 #: ../../templates/apikey_edit.html:14 ../../templates/apikey_edit.html:15
 #: ../../templates/apikey_list.html:18
 msgid "Key name"
-msgstr "Назва ключа"
+msgstr "Название ключа"
 
 #: ../../templates/apikey_edit.html:18
 #: ../../templates/distributive_edit.html:30
 #: ../../templates/environment_edit.html:17 ../../templates/user_edit.html:22
 msgid "Save"
-msgstr "Зберегти"
+msgstr "Сохранить"
 
 #: ../../templates/apikey_list.html:12
 #: ../../templates/distributive_list.html:11
 #: ../../templates/environment_list.html:5 ../../templates/user_list.html:5
 msgid "Add"
-msgstr "Додати"
+msgstr "Добавить"
 
 #: ../../templates/apikey_list.html:17
 msgid "Id"
@@ -86,33 +86,33 @@ msgstr "Ключ"
 
 #: ../../templates/apikey_list.html:28
 msgid "Edit"
-msgstr "Редагувати"
+msgstr "Редактировать"
 
 #: ../../templates/apikey_list.html:29
 msgid "Refresh"
-msgstr "Оновити"
+msgstr "Обновить"
 
 #: ../../templates/apikey_list.html:30
 msgid "Delete"
-msgstr "Видалити"
+msgstr "Удалить"
 
 #: ../../templates/distributive_edit.html:5
 #: ../../templates/distributive_list.html:6
 #: ../../templates/environment_edit.html:5
 #: ../../templates/environment_list.html:3
 msgid "Environment"
-msgstr "Середовище"
+msgstr "Среда"
 
 #: ../../templates/distributive_edit.html:6
 #: ../../templates/distributive_list.html:7
 #, python-format
 msgid "Distributives of environment \"%(name)s\""
-msgstr "Дистрибутиви для середовища \"%(name)s\""
+msgstr "Дистрибутивы для среды \"%(name)s\""
 
 #: ../../templates/distributive_edit.html:18
 #: ../../templates/distributive_list.html:22
 msgid "Version"
-msgstr "Версія"
+msgstr "Версия"
 
 #: ../../templates/distributive_edit.html:23
 msgid "File"
@@ -126,37 +126,37 @@ msgstr "Url"
 #: ../../templates/distributive_list.html:3
 #: ../../templates/menu_layout.html:13
 msgid "Distributives"
-msgstr "Дистрибутиви"
+msgstr "Дистрибутивы"
 
 #: ../../templates/distributive_list.html:16
 msgid "Latest distributive"
-msgstr "Останній дистрибутив"
+msgstr "Последний дистрибутив"
 
 #: ../../templates/empty_layout.html:4 ../../templates/menu_layout.html:4
 msgid "Distributive manager"
-msgstr "Менеджер дистрибутивів"
+msgstr "Менеджер дистрибутивов"
 
 #: ../../templates/environment_edit.html:13
 #: ../../templates/environment_list.html:9
 msgid "Name"
-msgstr "Ім’я"
+msgstr "Имя"
 
 #: ../../templates/environment_edit.html:14
 msgid "Environment name"
-msgstr "Назва середовища"
+msgstr "Имя среды"
 
 #: ../../templates/environment_list.html:10
 msgid "Latest"
-msgstr "Останнє"
+msgstr "Последнее"
 
 #: ../../templates/environment_list.html:26
 msgid "Do you realy want to delete environment?"
-msgstr "Ви дійсно хочете видалити середовище?"
+msgstr "Вы действительно хотите удалить среду?"
 
 #: ../../templates/login.html:8 ../../templates/user_edit.html:13
 #: ../../templates/user_list.html:10
 msgid "E-mail"
-msgstr "Електронна адреса"
+msgstr "Электронная почта"
 
 #: ../../templates/login.html:14 ../../templates/user_edit.html:18
 msgid "Password"
@@ -164,13 +164,13 @@ msgstr "Пароль"
 
 #: ../../templates/login.html:18
 msgid "Sign in"
-msgstr "Вхід"
+msgstr "Войти"
 
 #: ../../templates/menu_layout.html:14 ../../templates/user_edit.html:5
 #: ../../templates/user_list.html:3
 msgid "Users"
-msgstr "Користувачі"
+msgstr "Пользователи"
 
 #: ../../templates/menu_layout.html:16
 msgid "Sign out"
-msgstr "Вийти"
+msgstr "Выйти"

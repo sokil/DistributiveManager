@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-05-05 11:30+0300\n"
+"POT-Creation-Date: 2014-05-20 00:17+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,10 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
+
+#: ../../models/environment.py:26
+msgid "Environment with same name already exists"
+msgstr ""
 
 #: ../../routes/auth.py:16
 msgid "Email wrong"
@@ -25,7 +29,7 @@ msgstr ""
 msgid "Password wrong"
 msgstr ""
 
-#: ../../routes/settings.py:48
+#: ../../routes/environment.py:50 ../../routes/settings.py:48
 msgid "Successfully saved"
 msgstr ""
 
@@ -54,7 +58,7 @@ msgid "Editor"
 msgstr ""
 
 #: ../../templates/apikey_edit.html:14 ../../templates/apikey_edit.html:15
-#: ../../templates/apikey_list.html:17
+#: ../../templates/apikey_list.html:18
 msgid "Key name"
 msgstr ""
 
@@ -70,19 +74,23 @@ msgstr ""
 msgid "Add"
 msgstr ""
 
-#: ../../templates/apikey_list.html:18
+#: ../../templates/apikey_list.html:17
+msgid "Id"
+msgstr ""
+
+#: ../../templates/apikey_list.html:19
 msgid "Key"
 msgstr ""
 
-#: ../../templates/apikey_list.html:26
+#: ../../templates/apikey_list.html:28
 msgid "Edit"
 msgstr ""
 
-#: ../../templates/apikey_list.html:27
+#: ../../templates/apikey_list.html:29
 msgid "Refresh"
 msgstr ""
 
-#: ../../templates/apikey_list.html:28
+#: ../../templates/apikey_list.html:30
 msgid "Delete"
 msgstr ""
 
