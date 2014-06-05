@@ -11,7 +11,7 @@ environment = Blueprint('environment', __name__)
 @login_required
 def environment_list():
     return render_template('environment_list.html',
-        list=current_app.connection.Environment.find()
+        list=current_app.connection.Environment.find().sort('caption', 1)
     )
 
 
