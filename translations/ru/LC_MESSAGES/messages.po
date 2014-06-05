@@ -7,19 +7,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-05-20 00:17+0300\n"
-"PO-Revision-Date: 2014-05-20 00:18+0300\n"
+"POT-Creation-Date: 2014-06-05 15:09+0300\n"
+"PO-Revision-Date: 2014-06-05 15:10+0300\n"
 "Last-Translator: Dmytro Sokil <dmytro.sokil@gmail.com>\n"
 "Language-Team: ru <LL@li.org>\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 "X-Generator: Poedit 1.5.4\n"
+"Language: Russian\n"
 
-#: ../../models/environment.py:26
+#: ../../models/environment.py:28
 msgid "Environment with same name already exists"
 msgstr "Среда с таким именем уже зарегистрированна"
 
@@ -66,7 +67,7 @@ msgstr "Название ключа"
 
 #: ../../templates/apikey_edit.html:18
 #: ../../templates/distributive_edit.html:30
-#: ../../templates/environment_edit.html:17 ../../templates/user_edit.html:22
+#: ../../templates/environment_edit.html:24 ../../templates/user_edit.html:22
 msgid "Save"
 msgstr "Сохранить"
 
@@ -137,13 +138,34 @@ msgid "Distributive manager"
 msgstr "Менеджер дистрибутивов"
 
 #: ../../templates/environment_edit.html:13
+msgid "Caption"
+msgstr "Название"
+
+#: ../../templates/environment_edit.html:14
+msgid "Environment caption"
+msgstr "Имя среды"
+
+#: ../../templates/environment_edit.html:15
+msgid "Arbitrary name."
+msgstr "Произвольное название"
+
+#: ../../templates/environment_edit.html:19
+msgid "Identifier"
+msgstr "Ідентификатор"
+
+#: ../../templates/environment_edit.html:20
+msgid "Environment name"
+msgstr "Имя среды"
+
+#: ../../templates/environment_edit.html:21
+msgid "System identifier. Use letters, numbers, hyphen and underscores."
+msgstr ""
+"Системный идентификатор. Используйте буквы, цифры, тире и нижнее "
+"подчеркивание"
+
 #: ../../templates/environment_list.html:9
 msgid "Name"
 msgstr "Имя"
-
-#: ../../templates/environment_edit.html:14
-msgid "Environment name"
-msgstr "Имя среды"
 
 #: ../../templates/environment_list.html:10
 msgid "Latest"

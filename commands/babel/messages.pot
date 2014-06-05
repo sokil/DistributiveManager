@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-05-20 00:17+0300\n"
+"POT-Creation-Date: 2014-06-05 15:09+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 1.3\n"
 
-#: ../../models/environment.py:26
+#: ../../models/environment.py:28
 msgid "Environment with same name already exists"
 msgstr ""
 
@@ -64,7 +64,7 @@ msgstr ""
 
 #: ../../templates/apikey_edit.html:18
 #: ../../templates/distributive_edit.html:30
-#: ../../templates/environment_edit.html:17 ../../templates/user_edit.html:22
+#: ../../templates/environment_edit.html:24 ../../templates/user_edit.html:22
 msgid "Save"
 msgstr ""
 
@@ -134,12 +134,31 @@ msgid "Distributive manager"
 msgstr ""
 
 #: ../../templates/environment_edit.html:13
-#: ../../templates/environment_list.html:9
-msgid "Name"
+msgid "Caption"
 msgstr ""
 
 #: ../../templates/environment_edit.html:14
+msgid "Environment caption"
+msgstr ""
+
+#: ../../templates/environment_edit.html:15
+msgid "Arbitrary name."
+msgstr ""
+
+#: ../../templates/environment_edit.html:19
+msgid "Identifier"
+msgstr ""
+
+#: ../../templates/environment_edit.html:20
 msgid "Environment name"
+msgstr ""
+
+#: ../../templates/environment_edit.html:21
+msgid "System identifier. Use letters, numbers, hyphen and underscores."
+msgstr ""
+
+#: ../../templates/environment_list.html:9
+msgid "Name"
 msgstr ""
 
 #: ../../templates/environment_list.html:10

@@ -10,8 +10,15 @@
     <input type="hidden" name="id" value="{{ environment._id }}" />
 
     <div class="form-group">
-        <label>{{ _('Name') }}</label>
+        <label>{{ _('Caption') }}</label>
+        <input type="text" class="form-control" name="caption" placeholder="{{ _('Environment caption') }}" value="{{ environment.caption }}" autocomplete="off">
+        <span class="help-block">{{ _('Arbitrary name.') }}</span>
+    </div>
+
+    <div class="form-group">
+        <label>{{ _('Identifier') }}</label>
         <input type="text" class="form-control" name="name" placeholder="{{ _('Environment name') }}" value="{{ environment.name }}" autocomplete="off">
+        <span class="help-block">{{ _('System identifier. Use letters, numbers, hyphen and underscores.') }}</span>
     </div>
 
     <input type="submit" value="{{ _('Save') }}" class="btn btn-success" />

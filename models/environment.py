@@ -8,11 +8,13 @@ class Environment(Document):
     __collection__ = 'environment'
 
     structure = {
-        'name': unicode
+        'name': unicode,
+        'caption': unicode
     }
 
     default_values = {
-        'name': ''
+        'name': u'',
+        'caption': u''
     }
 
     def validate(self, auto_migrate=False, *args, **kwargs):

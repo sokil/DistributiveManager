@@ -44,6 +44,8 @@ def environment_save():
 
     item['name'] = request.form['name'].strip()
 
+    item['caption'] = request.form['caption'].strip()
+
     from mongokit import ValidationError
     try:
         item.save()
@@ -59,6 +61,6 @@ def environment_save():
 def environment_delete(environment_id):
     current_app.connection.Environment\
         .find_one({'_id': ObjectId(environment_id)})\
-        .delete();
+        .delete()
 
     return redirect(url_for('.environment_list'))
