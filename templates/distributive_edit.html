@@ -3,7 +3,7 @@
 
 <ol class="breadcrumb">
     <li><a href="/environment">{{ _('Environment') }}</a></li>
-    <li><a href="{{ url_for('distributive.distributive_list', environment_name=distributive.get_environment()['name']) }}">{{ _('Distributives of environment "%(name)s"', name=distributive.get_environment()['name']) }}</a></li>
+    <li><a href="{{ url_for('distributive.distributive_list', environment_name=distributive.get_environment()['name']) }}">{{ _('Distributives of environment "%(caption)s" (%(name)s)', caption=environment['caption'], name=environment['name']) }}</a></li>
     <li>{{ _('Editor') }}</li>
 </ol>
 
