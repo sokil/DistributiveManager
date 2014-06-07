@@ -4,7 +4,7 @@ class Paginator:
         self.cursor = cursor
         self.page_cursor = None
         self.page = 1
-        self.page_length = 1
+        self.page_length = 20
 
         self.total_length = None
 
