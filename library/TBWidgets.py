@@ -8,7 +8,7 @@ def _get_query_with_page(page):
 def pager(paginator, pager_range=5):
 
     current_page = paginator.get_page()
-    total_pages = paginator.get_total_length()
+    total_pages = paginator.get_total_pages()
 
     # Number of visible pages less than total pages number
     if total_pages <= pager_range * 2:

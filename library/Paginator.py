@@ -1,3 +1,5 @@
+from math import ceil
+
 class Paginator:
 
     def __init__(self, cursor=None):
@@ -44,6 +46,9 @@ class Paginator:
             self.total_length = self.cursor.count()
 
         return self.total_length
+
+    def get_total_pages(self):
+        return int(ceil(self.get_total_length() / self.page_length))
 
     def __iter__(self):
         return self
