@@ -10,9 +10,16 @@ environment = Blueprint('environment', __name__)
 @environment.route('/environment/list')
 @login_required
 def environment_list():
-    return render_template('environment_list.html',
-        list=current_app.connection.Environment.find().sort('caption', 1)
-    )
+
+    # get iterator
+    env_list = current_app.connection.Environment.find().sort('caption', 1)
+
+    # paginator
+    from Paginator import Paginator
+    paginator = Paginator(env_list)
+    paginator.set_page(request.args.get('p'))
+
+    return render_template('environment_list.html', paginator=paginator)
 
 
 @environment.route('/environment/new')

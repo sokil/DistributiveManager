@@ -11,7 +11,7 @@
         <th>{{ _('Latest') }}</th>
         <th></th>
     </tr>
-    {% for environment in list %}
+    {% for environment in paginator %}
     <tr>
         <td><a href="/distributive/list/{{ environment.name }}">{{ environment.caption }}</a></td>
         <td>{{ environment.name }}</td>
@@ -23,6 +23,11 @@
     </tr>
     {% endfor %}
     </table>
+
+    <div class="text-center">
+        {{ pager(paginator)|safe }}
+    </div>
+
     <script type="text/javascript">
         $('.delete').click(function(e) {
             if(!confirm('{{ _('Do you realy want to delete environment?') }}')) {

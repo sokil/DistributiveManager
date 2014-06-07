@@ -13,13 +13,22 @@ class Paginator:
         return self
 
     def set_page(self, page):
-        page = int(page)
         if page:
-            self.page = page
+            try:
+                page = int(page)
+            except ValueError:
+                page = 1
 
+        if not page:
+            page = 1
+
+        self.page = page
         self.page_cursor = None
 
         return self
+
+    def get_page(self):
+        return self.page
 
     def set_page_length(self, length):
         length = int(length)

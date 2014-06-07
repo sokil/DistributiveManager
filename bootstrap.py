@@ -66,6 +66,13 @@ babel = Babel(app)
 def get_locale():
     return request.accept_languages.best_match(app.config['SUPPORTED_LANGUAGES'])
 
+# Configure Jinja
+from TBWidgets import pager
+
+app.jinja_env.globals.update(
+    pager=pager
+)
+
 # Log errors
 if app.config['LOGGER_ENABLED'] and len(app.config['LOGGER_EMAILS']) > 0:
     import logging
